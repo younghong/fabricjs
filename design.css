@@ -1,0 +1,22 @@
+body {
+    height: 100vh;
+}
+
+.container {
+    background: beige;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    flex-grow: 1;
+}
+
+.can {
+    width: 100%;
+    height: 100px;
+}
