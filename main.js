@@ -13,6 +13,9 @@ start = () => {
 
     addScrollEvent();
 
+    this.canvas.add(
+        new fabric.Circle({ top: 140, left: 230, radius: 25, fill: 'green' }),
+    );
 
     var path = new fabric.Path('M 0 0 L 20 0 L 20 20 z');
     path.set({ left: 120, top: 120 });
@@ -60,13 +63,39 @@ addScrollEvent = () => {
 
 animation = (target) => {
 
-    target.animate('left', 100, {
-        onChange: this.canvas.renderAll.bind(this.canvas),
+    // target.animate('left', 100, {
+    //     onChange: this.canvas.renderAll.bind(this.canvas),
+    //     duration: 1000,
+    //     easing: fabric.util.ease.easeOutBounce
+    //   });
+
+
+
+      fabric.util.animate({
+        startValue: target.left,
+        endValue: target.left+50,
         duration: 1000,
-        easing: fabric.util.ease.easeOutBounce
+        onChange: function(value) {
+            target.left = value;
+            canvas.renderAll();
+        },
+
       });
 
 }
+
+function animate() {
+
+    var max=400-canvas.item(0).height;
+
+    canvas.item(0).animate('top', canvas.item(0).get('top') === max ? '0' : max, {
+      duration: 1000,
+      onChange: canvas.renderAll.bind(canvas),
+      onComplete: animate
+    });
+  }
+
+
 
 addRect = (x,y) => {
     // create a rectangle object
@@ -85,3 +114,4 @@ addRect = (x,y) => {
 
 
 start();
+animate();
