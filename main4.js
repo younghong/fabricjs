@@ -3,7 +3,18 @@
 
 
     window.addEventListener("keydown", (e) => {
-        canvas.getActiveObject();
+
+      e.preventDefault();
+
+      var _items =  canvas.getObjects();
+      var _item = _items[0];
+
+      if( e.keyCode == 37 ){
+        _item.left -= 10;
+      }else if( e.keyCode == 39 ){
+        _item.left += 10;
+      }
+      
         console.log(e)
     } )
 
